@@ -1,0 +1,37 @@
+  .aboutContent
+  {
+      padding: 20px;
+      margin-top: 60px; 
+   
+  }
+  .Aboutcard {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .Aboutcard-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 500px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  .paragraph {
+    margin-bottom:10px;
+  }
+  
+  .aboutContent h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .aboutContent p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  

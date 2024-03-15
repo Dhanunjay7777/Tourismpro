@@ -152,7 +152,7 @@ class Home extends React.Component {
                     </div>
                     <div className='outlet'>
                         <div id='titlebar'></div>
-                        <iframe id='module' src=""></iframe>
+                        <iframe id='module' title="Outer" src=""></iframe>
                     </div>
                 </div>
                 <div className='footer'>

@@ -124,7 +124,7 @@ function register() {
         return;
     }
 
-    var url = 'http://localhost:5000/registration/signup';
+    var url = 'mongodb+srv://dhanunjayp67:UYj2gEPo4fHZj1Ka@final.qtxvndt.mongodb.net/registration/signup';
     var data = JSON.stringify({
         firstname: RT1.value,
         lastname: RT2.value,

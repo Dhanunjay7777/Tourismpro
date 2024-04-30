@@ -1,80 +1,61 @@
 import React, { Component } from 'react';
 import './about.css';
-import meImage from './images/me.jpg'; // Import the image file
-import githubLogo from './images/github.png'; // Import GitHub logo image
-import linkedinLogo from './images/linkedin.png'; 
-const styles = {
-  contactHeader: {
-    backgroundColor: 'rgb(0, 86, 179)',
-    color: '#fff',
-    padding: '10px',
-    textAlign: 'right',
-    zIndex: 2,
-    position: 'fixed',
-    width: '100%',
-    height: '20px',
-  },
-  loginHeaderLinks: {
-    float: 'right',
-    marginRight: '30px',
-    marginTop: '1px',
-  },
-  footer: {
-    backgroundColor: 'rgb(0, 86, 179)',
-    color: '#fff',
-    padding: '10px',
-    textAlign: 'center',
-    fontSize: '10pt',
-    zIndex: 2,
-    position: 'fixed',
-    width: '100%',
-    bottom: 0,
-    height: '20px',
-  },
-};
-
-function handleLoginAbout() {
-  window.location.replace('/');
-}
+import profileImage from '../src/images/adminbg.jpg';
 
 class Aboutus extends Component {
   render() {
     return (
-      <div>
-        <div style={styles.contactHeader}>
-          <div className='loginheader-links' style={styles.loginHeaderLinks}>
-            <span onClick={handleLoginAbout}>🔒Login</span>
+      <html lang="en">
+          <div className="Aboutusmain-nav">
+            <ul className="Aboutusnav">
+              <li className="Aboutusname">DHANUNJAY</li>
+              <li><a href="/">🏠Home</a></li>
+              <li><a href="/">Experience</a></li>
+            </ul>
           </div>
-        </div>
-        <div className='aboutContent'>
-        <h2 style={{ textAlign: 'center' }}>About Us</h2>
-          <img src={meImage} alt="About Me" style={{ display: 'block', margin: 'auto' }} />
 
-         
-  <p className='paragraph'>
-    A Tourism and Hospitality Management System is an effective solution for addressing user needs and ensuring customer satisfaction. Based in a small town in Brazil, I have a strong passion for technology and enjoy constantly learning new things. I have specialized in managing Virtualization, Windows and implementing various network services to support the tourism and hospitality industry.
-  </p>
- 
-  <p className='paragraph'>
-    I am proficient in various development technologies including HTML5, JavaScript, CSS3, Bootstrap, Git enabling me to design and implement robust and scalable systems tailored to the unique requirements of the tourism and hospitality sector.
-  </p>
+          <div className='Aboutusheader'>
+          <img src={profileImage} alt="Profile" className="profile-image" />
+            <h1 className="tag name">Hello, I’m Dhanunjay.😊</h1>
+            <p className="tag location">My home🏠 is India,Kl University </p>
+          </div>
 
-          <div className="Aboutcard">
-            <div className="Aboutcard-content">
-              <a href="https://github.com/Dhanunjay7777">
-                <img src={githubLogo} alt="GitHub" className="logo" />
-              </a>
-              <a href="https://www.linkedin.com/in/puttagunta-dhanunjay-48241626a/">
-                <img src={linkedinLogo} alt="LinkedIn" className="logo" />
-              </a>
+          <main className="Aboutusflex">
+            <div className="Aboutuscard">
+              <h2>Background</h2>
+              <p>I’m an aspiring web developer who loves everything about the web. I've lived in lots of different places and have worked in lots of different jobs. I’m excited to bring my life experience to the process of building fantastic looking websites.</p>
+              <p>I'm a life-long learner who's always interested in expanding my skills.</p>
             </div>
-            <div style={styles.footer}>
-          Copyright @ KL University. All rights reserved.
-        </div>
-          </div>
-       
-      </div>
-      </div>
+
+            <div className="Aboutuscard">
+              <h2>Goals</h2>
+              <p>I want to master the process of building web sites and increase my knowledge, skills and abilities in:</p>
+              <ul className="skills">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>ExpressJS</li>
+                <li>ReactJS</li>
+              </ul>
+              <p>I’d like to work for a web development firm helping clients create an impressive online presence.</p>
+            </div>
+            <div className="Aboutuscard1">
+            <h2>Social</h2>
+              <p>I want to master the process of building web sites and increase my knowledge, skills and abilities in:</p>
+              <ul className="skills">
+  <a href="https://www.linkedin.com/in/puttagunta-dhanunjay-48241626a/">📞Linkedin</a>
+  <br></br>
+  <br></br>
+  <a href="https://github.com/Dhanunjay7777">☎️GitHub</a>
+  <br></br>
+  <br></br>
+  <a href="https://leetcode.com/klu_2200030719/">🌐LeetCode</a>
+</ul>
+
+            </div>
+            
+          </main>        
+      </html>
     );
   }
 }

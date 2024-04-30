@@ -33,6 +33,9 @@ import Viewusers from './Viewusers';
 import Viewqu from './viewqu';
 import TodoList from './todo';
 import Aboutus from './About';
+import Photoboot from './Photoboot';
+import Security from './Security';
+import Hotel from './hotel';
 function ChatWidget() {
   const location = useLocation();
 
@@ -48,7 +51,7 @@ function ChatWidget() {
       (function (d, m) {
         var kommunicateSettings =
           {
-            "appId": "1a2c08dc23f62502ee21e3489536ee81d",
+            "appId":"32cf8d804efb194db36bf09abb194ecc6",
             "popupWidget": true,
             "automaticChatOpenOnNavigation": true
           };
@@ -103,10 +106,12 @@ function Website() {
         <Route path="/Rotterdam" element={<Rotterdam />} />
         <Route path="/Delft" element={<Delft />} />
         <Route path="/Hague" element={<Hague />} />
-
+        <Route path="/hotel" element={<Hotel/>}/>
         <Route path="/myprofile" element={<MyProfile />} />
         <Route path="/Changepwd" element={<Changepwd />} />
         <Route path="/todo" element={<TodoList />} />
+        <Route path="/Photoboot" element={<Photoboot/>}/>
+        <Route path="/Security" element={<Security/>}/>
 
 
       </Routes>

@@ -1,9 +1,8 @@
 /*Page Style*/
-html, body{
+html{
   width: 100%;
   height: 100%;
   margin:0;
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 9pt;
 }
 
@@ -12,6 +11,33 @@ html, body{
   width: 100%;
   height: 100%;
   
+}
+/* Add this to your index.css file or any other CSS file you are using */
+
+.captcha {
+    margin-top: 10px; 
+    /* Adjust margin-top as needed */
+}
+
+.captcha span {
+  border: 1px solid transparent; /* Add transparent border to create space for the line */
+  padding: 5px; /* Add padding to create space for the line */
+  font-size: 18px; /* Adjust font-size as needed */
+  margin-right: 10px; /* Adjust margin-right as needed */
+  font-family: Arial, sans-serif;
+  background-color: rgb(185, 106, 106); /* Specify background color */
+  color: white; /* Set text color to white */
+}
+.captcha span:hover {
+  background-color: #e57373; /* Change background color on hover for interactivity */
+}
+.captcha input[type="text"] {
+    padding: 5px; /* Adjust padding as needed */
+    font-size: 16px; /* Adjust font-size as needed */
+    border: 1px solid #ccc; /* Specify border color */
+    border-radius: 5px; /* Add border-radius for rounded corners */
+    width: 200px; /* Adjust width as needed */
+    box-sizing: border-box; /* Include padding and border in width calculation */
 }
 
 :focus{
@@ -549,3 +575,5 @@ html, body{
   height: 100%;
   object-fit: cover; /* Preserve aspect ratio and cover the entire .card */
 }
+
+

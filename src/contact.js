@@ -10,21 +10,7 @@ const styles = {
   
 
   },
- 
-  // contactheader: {
-  //   backgroundColor: 'rgb(21, 155, 162)',
-  //   color: '#fff',
-  //   padding: '10px',
-  //   textAlign: 'right',
-  //   zIndex: 2,
-  //   position: 'fixed',
-  //   width: '100%',
-  //   height: '40px',
-  // },
-  // headerLink: {
-  //   color: '#fff',
-  //   textDecoration: 'none',
-  // },
+
   footer: {
     backgroundColor: 'rgb(0, 86, 179)',
     color: '#fff',
@@ -147,7 +133,7 @@ class ContactForm extends Component {
     return (
       <div style={styles.formWrapper}>
         <div className='contactheader'>
-          <a href="http://localhost:3000" className={styles.headerLink}>🔒Login</a>
+          <a href="http://3.92.161.20:3000/" className={styles.headerLink}>🔒Login</a>
         </div>
         <div style={{ ...styles.wrapper, display: 'flex', justifyContent: 'center' }}>
           <form className="contactform" onSubmit={this.contactRegister} style={{ maxWidth: '460px', width: '100%' }}>

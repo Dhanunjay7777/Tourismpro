@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import logo from './images/logo.png';
 import './index.css'
-import { callApi, errorResponse, setSession } from './main';
+import { callApi, errorResponse, setSession ,getSession} from './main';
 
 // Styles for various components
 const popupwindowstyle = { width: '300px', height: '450px', background: 'white' };
@@ -14,6 +14,24 @@ const space = { height: '10px' };
 
 function Login() {
     const [showLoginPopup, setShowLoginPopup] = useState(true);
+    const [captchaChallenge, setCaptchaChallenge] = useState(generateCaptcha());
+    const [captchaInput, setCaptchaInput] = useState('');
+
+    function generateCaptcha() {
+        // Generate a random string containing only numbers for captcha challenge
+        const captchaLength = 6;
+        let captcha = '';
+        for (let i = 0; i < captchaLength; i++) {
+            captcha += Math.floor(Math.random() * 10); // Random number between 0 and 9
+        }
+        return captcha;
+    }
+    function handleCaptchaClick() {
+        // Generate a new captcha challenge when the captcha container is clicked
+        setCaptchaChallenge(generateCaptcha());
+        // Clear the input field
+        setCaptchaInput('');
+    }
 
     function toggleLoginPopup() {
         // Close other popups if they are open
@@ -43,23 +61,47 @@ function Login() {
         var T1 = document.getElementById('T1');
         var T2 = document.getElementById('T2');
 
-        var url = 'mongodb+srv://dhanunjayp67:UYj2gEPo4fHZj1Ka@final.qtxvndt.mongodb.net/login/signin';
+        if (captchaInput !== captchaChallenge) {
+            alert('Captcha entered is wrong. Please try again.');
+            setCaptchaInput('');
+            setCaptchaChallenge(generateCaptcha());
+            return;
+        }
+
+        var url = 'http://localhost:5000/login/signin';
         var data = JSON.stringify({
             emailid: T1.value,
             pwd: T2.value,
         });
         callApi('POST', url, data, loginSuccess, errorResponse);
     }
+ function loginSuccess(res) {
+  var data = JSON.parse(res);
+  if (data === 1) {
+    var T1 = document.getElementById('T1');
+    setSession('sid', T1.value, 24 * 60);
 
-    function loginSuccess(res) {
-        var data = JSON.parse(res);
-        if (data === 1) {
-            var T1 = document.getElementById('T1');
-            setSession('sid', T1.value, 24 * 60);
-            window.location.replace('/home');
-        } else alert('Invalid Credentials!');
-    }
+    // Get the current login time
+    var loginTime = new Date().toISOString();
 
+    // Get the email ID from cookies
+    var emailid = getSession('sid');
+
+    // Send the data to the "send" database
+    var url = 'http://localhost:5000/send';
+    var dataToSend = JSON.stringify({
+      emailid: emailid,
+      loginTime: loginTime, // Initialize end time as empty, will be updated on logout
+    });
+    callApi('POST', url, dataToSend, () => {
+      console.log('Data sent to send database');
+    }, errorResponse);
+
+    window.location.replace('/home');
+  } else {
+    alert('Invalid Credentials!');
+  }
+}
 
     function registration() {
         var T1 = document.getElementById('T1');
@@ -124,7 +166,7 @@ function register() {
         return;
     }
 
-    var url = 'mongodb+srv://dhanunjayp67:UYj2gEPo4fHZj1Ka@final.qtxvndt.mongodb.net/registration/signup';
+    var url = 'http://localhost:5000/registration/signup';
     var data = JSON.stringify({
         firstname: RT1.value,
         lastname: RT2.value,
@@ -158,6 +200,7 @@ function register() {
     login.style.display = 'block';
 }
 
+  
 
 
     function registeredSuccess(res) {
@@ -229,8 +272,8 @@ function register() {
                 <div className='loginheader-links'>
                     <span onClick={toggleLoginPopup}>🔒Login</span>
                     {/* <span>About us</span> */}
-                     <span onClick={handleAdminLogin}>Admin</span>
-                    <span onClick={handleContactUsClick}>Contact us</span>
+                     <span onClick={handleAdminLogin}>⚙️Admin</span>
+                    <span onClick={handleContactUsClick}>☎️Contact us</span>
                     <span onClick={handleAboutus}>About us</span>
                 </div>
             </div>
@@ -243,7 +286,7 @@ function register() {
                             <div style={logodivstyle}>
                                 <img src={logo} alt='' style={logostyle} />
                             </div>
-                            <div>Username*</div>
+                            <div>EmailID*</div>
                             <div>
                                 <input type='text' id='T1' className='txtbox' />
                             </div>
@@ -253,7 +296,11 @@ function register() {
                             <input type='password' id='T2' className='txtbox' onKeyPress={handleKeyPress} />
                             </div>
                             <div style={space}></div>
-                            <div style={space}></div>
+                            {/* <div style={space}></div> */}
+                            <div className='captcha'>
+                                <input type='text' value={captchaInput} onChange={e => setCaptchaInput(e.target.value)} placeholder='Enter captcha' onKeyPress={handleKeyPress} />
+                                <span onClick={handleCaptchaClick} style={{ cursor: 'pointer' }}>{captchaChallenge}</span>
+                            </div>
                             <div>
                                 <button className='btn' onClick={validate}>
                                     Sign In
@@ -262,6 +309,7 @@ function register() {
                             <div style={space}></div>
                             <div style={space}></div>
                             <div style={space}></div>
+               
                             <div>
                                 New user?{' '}
                                 <label className='linklabel' onClick={registration}>
@@ -275,6 +323,7 @@ function register() {
                                     Reset here
                                 </label>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -313,11 +362,13 @@ function register() {
                                 <input type='password' id='RT6' className='txtbox' />
                             </div>
                             <div style={space}></div>
+                            
                             <div>
                                 <button className='btn' onClick={register}>
                                     Register
                                 </button>
                                 <div>
+            
                               <br />
                              Already have an account?{' '}
                           <span style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={toggleLoginPopup}>

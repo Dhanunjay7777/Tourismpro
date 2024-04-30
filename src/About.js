@@ -9,8 +9,8 @@ class Aboutus extends Component {
           <div className="Aboutusmain-nav">
             <ul className="Aboutusnav">
               <li className="Aboutusname">DHANUNJAY</li>
-              <li><a href="/">🏠Home</a></li>
-              <li><a href="/">Experience</a></li>
+              <li><a href="http://3.92.161.20:3000/">🏠Home</a></li>
+              <li><a href="http://3.92.161.20:3000/">Experience</a></li>
             </ul>
           </div>
 
